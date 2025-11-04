@@ -58,7 +58,7 @@ Partial Class Form1
         '
         'btnRead
         '
-        Me.btnRead.Location = New System.Drawing.Point(356, 57)
+        Me.btnRead.Location = New System.Drawing.Point(359, 59)
         Me.btnRead.Name = "btnRead"
         Me.btnRead.Size = New System.Drawing.Size(75, 23)
         Me.btnRead.TabIndex = 3
@@ -67,7 +67,7 @@ Partial Class Form1
         '
         'btnSort
         '
-        Me.btnSort.Location = New System.Drawing.Point(501, 57)
+        Me.btnSort.Location = New System.Drawing.Point(501, 59)
         Me.btnSort.Name = "btnSort"
         Me.btnSort.Size = New System.Drawing.Size(75, 23)
         Me.btnSort.TabIndex = 4
@@ -94,7 +94,7 @@ Partial Class Form1
         Me.Controls.Add(Me.NumericUpDown1)
         Me.Controls.Add(Me.Label1)
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "Sorting Numbers"
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
