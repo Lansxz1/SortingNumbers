@@ -21,23 +21,26 @@ Public Class Form1
         End Try
     End Sub
     Private Sub btnRead_Click(sender As Object, e As EventArgs) Handles btnRead.Click
+
+        numbers.Clear()
+        ListBox1.Items.Clear()
         Try
-            ListBox1.Items.Clear()
+
             Using reader As New StreamReader(filepath)
                 Dim line As String = reader.ReadLine()
-
                 While line IsNot Nothing
                     Dim num As Integer
                     If Integer.TryParse(line, num) Then
                         numbers.Add(num)
+                        ListBox1.Items.Add(num)
                     End If
                     line = reader.ReadLine()
                 End While
-                reader.Close()
             End Using
 
             For Each num In numbers
                 ListBox1.Items.Add(num)
+
             Next
 
             MessageBox.Show("Numbers succesfully shown.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -53,11 +56,16 @@ Public Class Form1
             MessageBox.Show("No numbers to sort. Please read numbers first.", "Retry", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
         End If
+
         Dim sortnumbers = numbers.OrderBy(Function(n) n).ToList()
         ListBox1.Items.Clear()
-        For Each n In sortnumbers
-            ListBox1.Items.Add(n)
-        Next
+        Using writer As New StreamWriter(filepath, False)
+            For Each n In sortnumbers
+                ListBox1.Items.Add(n)
+                writer.WriteLine(n)
+            Next
+        End Using
+
         MessageBox.Show("Numbers sorted!", "Sort", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
     End Sub
