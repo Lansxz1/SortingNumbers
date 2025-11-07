@@ -11,7 +11,7 @@ Public Class Form1
 
         Try
 
-            Using writer As New StreamWriter(filepath)
+            Using writer As New StreamWriter(filepath, True)
                 writer.WriteLine(NumericUpDown1.Value)
                 writer.Close()
             End Using
@@ -49,6 +49,16 @@ Public Class Form1
 
 
     Private Sub btnSort_Click(sender As Object, e As EventArgs) Handles btnSort.Click
+        If numbers.Count = 0 Then
+            MessageBox.Show("No numbers to sort. Please read numbers first.", "Retry", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+        Dim sortnumbers = numbers.OrderBy(Function(n) n).ToList()
+        ListBox1.Items.Clear()
+        For Each n In sortnumbers
+            ListBox1.Items.Add(n)
+        Next
+        MessageBox.Show("Numbers sorted!", "Sort", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
     End Sub
 End Class
